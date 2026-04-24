@@ -1,0 +1,9 @@
+{
+  "name": "linea-chiara",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Web app locale per monitorare dimagrimento e analizzare i pasti con AI.",
+  "scripts": {
+    "start": "node server.js"
+  }
+}
