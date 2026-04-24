@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LineaChiara Benessere</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="#hero">LineaChiara</a>
+        <nav class="topbar__nav">
+          <a href="#tracker">Tracker</a>
+          <a href="#progress">Progressi</a>
+          <a href="#recipes">Ricette</a>
+          <a href="#insights">Consigli</a>
+          <a href="#goals">Obiettivi</a>
+        </nav>
+      </header>
+
+      <main>
+        <section id="hero" class="section hero reveal">
+          <div class="hero__content">
+            <p class="eyebrow">Tracker nutrizione e benessere quotidiano</p>
+            <h1>Tieni traccia della tua alimentazione, trasforma la tua vita</h1>
+            <p class="hero__subtitle">
+              Costruisci abitudini serene e costanti con un check-in quotidiano
+              semplice, consigli chiari e progressi facili da leggere.
+            </p>
+            <div class="hero__actions">
+              <a class="button button--primary" href="#tracker">Inizia a tracciare</a>
+              <a class="button button--ghost" href="#progress">Vedi i progressi</a>
+            </div>
+          </div>
+
+          <div class="hero__visual">
+            <div class="hero-card hero-card--main">
+              <div class="hero-card__badge">Oggi</div>
+              <div class="hero-card__ring">
+                <div>
+                  <strong id="heroCalories">0</strong>
+                  <span>calorie</span>
+                </div>
+              </div>
+              <div class="hero-card__mini-grid">
+                <article>
+                  <strong id="heroWater">0.0L</strong>
+                  <span>idratazione</span>
+                </article>
+                <article>
+                  <strong id="heroWeight">--</strong>
+                  <span>peso</span>
+                </article>
+              </div>
+            </div>
+            <div class="hero-card hero-card--floating">
+              <div class="leaf-icon" aria-hidden="true">
+                <span></span>
+                <span></span>
+              </div>
+              <p>Routine gentili creano cambiamenti duraturi.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="tracker" class="section reveal">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">01. Tracker giornaliero</p>
+              <h2>Registra l’essenziale in un minuto</h2>
+            </div>
+            <p class="section-copy">
+              Mantieni il monitoraggio leggero: peso, calorie e acqua bastano per
+              vedere i pattern che contano davvero.
+            </p>
+          </div>
+
+          <div class="tracker-layout">
+            <form id="dailyForm" class="tracker-card tracker-form">
+              <label>
+                Peso
+                <div class="input-wrap">
+                  <input id="weight" name="weight" type="number" step="0.1" min="35" max="300" placeholder="72.4" />
+                  <span>kg</span>
+                </div>
+              </label>
+
+              <label>
+                Calorie
+                <div class="input-wrap">
+                  <input id="caloriesIn" name="caloriesIn" type="number" min="0" placeholder="1830" />
+                  <span>kcal</span>
+                </div>
+              </label>
+
+              <label>
+                Acqua bevuta
+                <div class="input-wrap">
+                  <input id="waterLiters" name="waterLiters" type="number" min="0" step="0.1" placeholder="2.1" />
+                  <span>L</span>
+                </div>
+              </label>
+
+              <button class="button button--primary" type="submit">Salva i dati di oggi</button>
+            </form>
+
+            <aside class="tracker-card tracker-preview">
+              <p class="eyebrow">Panoramica di oggi</p>
+              <h3 id="todayHeading">Nessun check-in per ora</h3>
+              <p id="todayMessage">
+                Inizia con un check-in semplice e lascia che la dashboard rifletta
+                il tuo ritmo quotidiano.
+              </p>
+              <div class="tracker-preview__chips">
+                <span id="snapshotWeight">Peso: --</span>
+                <span id="snapshotCalories">Calorie: 0</span>
+                <span id="snapshotWater">Acqua: 0.0L</span>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <section id="progress" class="section reveal">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">02. Panoramica progressi</p>
+              <h2>Osserva il trend senza confusione</h2>
+            </div>
+            <p class="section-copy">
+              Riassunti gentili ti aiutano a notare la costanza, non la perfezione.
+            </p>
+          </div>
+
+          <div class="progress-layout">
+            <div class="panel chart-panel">
+              <div class="panel__topline">
+                <h3>Evoluzione del peso</h3>
+                <span id="chartCaption">Ultimi 7 check-in</span>
+              </div>
+              <canvas id="weightChart" width="860" height="320" aria-label="Grafico evoluzione del peso"></canvas>
+            </div>
+
+            <div class="summary-grid" id="summaryGrid">
+              <article class="summary-card">
+                <p>Calorie settimanali</p>
+                <strong>0 kcal</strong>
+                <span>Media giornaliera</span>
+              </article>
+              <article class="summary-card">
+                <p>Idratazione</p>
+                <strong>0.0 L</strong>
+                <span>Media giornaliera</span>
+              </article>
+              <article class="summary-card">
+                <p>Abitudini</p>
+                <strong>0%</strong>
+                <span>Giorni registrati questa settimana</span>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section id="insights" class="section reveal">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">03. Consigli nutrizionali</p>
+              <h2>Indicazioni chiare, tono leggero</h2>
+            </div>
+            <p class="section-copy">
+              Piccoli segnali aiutano a correggere la rotta senza sovraccarico.
+            </p>
+          </div>
+
+          <div class="insights-grid" id="insightsGrid">
+            <article class="insight-pill insight-pill--green">
+              <div class="indicator"></div>
+              <div>
+                <h3>L’idratazione va bene</h3>
+                <p>Sei sulla strada giusta oggi.</p>
+              </div>
+            </article>
+            <article class="insight-pill insight-pill--orange">
+              <div class="indicator"></div>
+              <div>
+                <h3>Le proteine possono salire</h3>
+                <p>Aggiungi una fonte proteica semplice a un pasto.</p>
+              </div>
+            </article>
+            <article class="insight-pill insight-pill--red">
+              <div class="indicator"></div>
+              <div>
+                <h3>La costanza è bassa</h3>
+                <p>Prova a registrare sempre alla stessa ora.</p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="recipes" class="section reveal">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">04. Ricette dalla dispensa</p>
+              <h2>Trasforma quello che hai in ricette semplici</h2>
+            </div>
+            <p class="section-copy">
+              Inserisci gli ingredienti che hai già in casa e genera ricette con
+              calorie, proteine, carboidrati e grassi.
+            </p>
+          </div>
+
+          <div class="recipes-layout">
+            <form id="pantryForm" class="panel pantry-form">
+              <label>
+                Ingredienti disponibili
+                <textarea
+                  id="pantryIngredients"
+                  name="pantryIngredients"
+                  rows="6"
+                  placeholder="uova, riso, pollo, spinaci, yogurt, pomodori"
+                ></textarea>
+              </label>
+
+              <label>
+                Focus della ricetta
+                <select id="recipeGoal" name="recipeGoal">
+                  <option value="balanced">Bilanciata</option>
+                  <option value="high-protein">Alta in proteine</option>
+                  <option value="light">Leggera</option>
+                  <option value="comfort">Comfort bowl</option>
+                </select>
+              </label>
+
+              <button id="generateRecipesButton" class="button button--primary" type="submit">
+                Genera ricette
+              </button>
+
+              <p id="pantryStatus" class="section-copy">
+                Il generatore di ricette funziona in locale su questa pagina e
+                passa all’AI quando il sito gira con il backend locale.
+              </p>
+            </form>
+
+            <div class="recipes-results">
+              <div class="recipes-results__header">
+                <h3>Suggerimenti ricette</h3>
+                <span id="recipeSourceBadge">Modalità smart locale</span>
+              </div>
+              <div id="recipeResults" class="recipe-cards"></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="goals" class="section reveal">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">05. Obiettivi</p>
+              <h2>Imposta target semplici e realistici</h2>
+            </div>
+            <p class="section-copy">
+              Gli obiettivi funzionano meglio quando restano visibili e misurabili.
+            </p>
+          </div>
+
+          <div class="goals-layout">
+            <form id="goalsForm" class="panel goals-form">
+              <label>
+                Peso obiettivo
+                <div class="input-wrap">
+                  <input id="goalWeight" name="goalWeight" type="number" step="0.1" min="35" max="300" placeholder="68" />
+                  <span>kg</span>
+                </div>
+              </label>
+              <label>
+                Obiettivo calorie giornaliero
+                <div class="input-wrap">
+                  <input id="goalCalories" name="goalCalories" type="number" min="0" placeholder="1800" />
+                  <span>kcal</span>
+                </div>
+              </label>
+              <label>
+                Obiettivo acqua giornaliero
+                <div class="input-wrap">
+                  <input id="goalWater" name="goalWater" type="number" min="0" step="0.1" placeholder="2.2" />
+                  <span>L</span>
+                </div>
+              </label>
+              <button class="button button--primary" type="submit">Salva obiettivi</button>
+            </form>
+
+            <div class="panel goal-progress">
+              <div class="goal-progress__item">
+                <div class="goal-progress__heading">
+                  <h3>Obiettivo peso</h3>
+                  <span id="goalWeightLabel">Nessun obiettivo</span>
+                </div>
+                <div class="progressbar"><span id="goalWeightBar"></span></div>
+              </div>
+              <div class="goal-progress__item">
+                <div class="goal-progress__heading">
+                  <h3>Obiettivo calorie</h3>
+                  <span id="goalCaloriesLabel">Nessun obiettivo</span>
+                </div>
+                <div class="progressbar"><span id="goalCaloriesBar"></span></div>
+              </div>
+              <div class="goal-progress__item">
+                <div class="goal-progress__heading">
+                  <h3>Obiettivo idratazione</h3>
+                  <span id="goalWaterLabel">Nessun obiettivo</span>
+                </div>
+                <div class="progressbar"><span id="goalWaterBar"></span></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="motivation" class="section reveal">
+          <div class="motivation-layout">
+            <div class="panel streak-card">
+              <p class="eyebrow">06. Motivazione e abitudini</p>
+              <h2>Resta connesso alla tua routine</h2>
+              <div class="streak-badge">
+                <strong id="streakValue">0</strong>
+                <span>giorni di fila</span>
+              </div>
+              <div class="habit-dots" id="habitDots" aria-label="Tracker della costanza giornaliera"></div>
+            </div>
+
+            <blockquote class="panel quote-card" id="quoteCard">
+              “I progressi sani nascono dalla ripetizione paziente.”
+            </blockquote>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer reveal">
+        <div>
+          <strong>LineaChiara</strong>
+          <p>Tracking nutrizionale minimale per progressi sereni ogni giorno.</p>
+        </div>
+        <div class="footer__links">
+          <a href="#hero">Home</a>
+          <a href="#tracker">Tracker</a>
+          <a href="#goals">Obiettivi</a>
+          <a href="#motivation">Abitudini</a>
+        </div>
+      </footer>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
